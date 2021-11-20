@@ -1,0 +1,80 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+}
+
+.App-header {
+  background-color: #282c34;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-link {
+  color: #09d3ac;
+}
+
+#window{
+  margin-top: 50px;
+  background-color: rgb(255, 255, 255);
+  color: rgb(0, 0, 0);
+  padding: 15px;
+  border-radius: 20px;
+  box-shadow: 0 0 5px rgb(0, 0, 0);
+  border-color: rgb(0, 0, 0);
+  border-width: 1mm;
+}
+
+.connectedAccount{
+  font-size: large;
+  margin-left: 2mm;
+  font-weight: bolder;
+}
+
+
+.container{
+  
+  margin-top: 30mm;
+}
+
+
+.flex-container {
+  display: flex;
+  padding: 7px;
+}
+
+.flex-child {
+  flex: 1;
+  border: 2px solid rgb(142, 142, 150);
+  border-radius: 8px;
+  width: min-content;
+  height: min-content;
+  text-align: center;
+  box-shadow: 3px;
+  background-color: rgb(255, 255, 255);
+  align-self: center;
+  color: rgb(0, 0, 0);
+  
+}  
+
+.gas_tex{
+  color: white;
+}
+
+
+.flex-child:first-child {
+  margin-right: 20px;
+  
+} 
+
+.btn{
+  background-color: black;
+  color: white;
+}
