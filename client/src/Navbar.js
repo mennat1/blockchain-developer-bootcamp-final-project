@@ -5,7 +5,7 @@ class Navbar extends Component {
 
   render() {
     return (
-      <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap py-3 shadow">
+      <nav className="navbar  navbar-custom fixed-top  flex-md-nowrap py-3 shadow">
         <ul className="navbar-nav px-3">
           <li className="nav-item text-nowrap d-none d-sm-none d-sm-block">
             

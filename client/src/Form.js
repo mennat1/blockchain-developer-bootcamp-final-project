@@ -193,29 +193,29 @@ class Form extends Component {
     let eth_balance_div, tokenA_balance_div, tokenB_balance_div, swapTokens_eth_balance_div, swapTokens_tokenB_balance_div, swapTokens_tokenA_balance_div ;
 
     if(this.state.eth_balance){
-        eth_balance_div = (<div>Connected Account ETH Balance = {this.props.web3.utils.fromWei((this.state.eth_balance).toString())}</div>);
+        eth_balance_div = (<div id="acc">ETH Balance = {this.props.web3.utils.fromWei((this.state.eth_balance).toString())}</div>);
     }
 
     if(this.state.tokenA_balance){
-        tokenA_balance_div = (<div>Connected Account  TokenA Balance = {this.props.web3.utils.fromWei((this.state.tokenA_balance).toString())}</div>);
+        tokenA_balance_div = (<div id="acc">TokenA Balance = {this.props.web3.utils.fromWei((this.state.tokenA_balance).toString())}</div>);
     }
 
     if(this.state.tokenB_balance){
-        tokenB_balance_div = (<div>Connected Account  TokenB Balance = {this.props.web3.utils.fromWei((this.state.tokenB_balance).toString())}</div>);
+        tokenB_balance_div = (<div id="acc">TokenB Balance = {this.props.web3.utils.fromWei((this.state.tokenB_balance).toString())}</div>);
 
     }
 
 
      if(this.state.swapTokens_eth_balance){
-        swapTokens_eth_balance_div = (<div>swapTokens Contract ETH Balance = {this.props.web3.utils.fromWei((this.state.swapTokens_eth_balance).toString())}</div>);
+        swapTokens_eth_balance_div = (<div id="swap_contract">ETH Balance = {this.props.web3.utils.fromWei((this.state.swapTokens_eth_balance).toString())}</div>);
     }
 
     if(this.state.swapTokens_tokenA_balance){
-        swapTokens_tokenA_balance_div = (<div>swapTokens Contract TokenA Balance = {this.props.web3.utils.fromWei((this.state.swapTokens_tokenA_balance).toString())}</div>);
+        swapTokens_tokenA_balance_div = (<div id="swap_contract">TokenA Balance = {this.props.web3.utils.fromWei((this.state.swapTokens_tokenA_balance).toString())}</div>);
     }
 
     if(this.state.swapTokens_tokenB_balance){
-        swapTokens_tokenB_balance_div = (<div>swapTokens Contract TokenB Balance = {this.props.web3.utils.fromWei((this.state.swapTokens_tokenB_balance).toString())}</div>);
+        swapTokens_tokenB_balance_div = (<div id="swap_contract">TokenB Balance = {this.props.web3.utils.fromWei((this.state.swapTokens_tokenB_balance).toString())}</div>);
 
     }
 
@@ -229,50 +229,67 @@ class Form extends Component {
    
     return(
       <div className="container">
-          <div className="row">
-              <div className="col col-md-6 offset-md-3" id="window">
-                  
-                    <form onSubmit={this.handleSubmit}>   
-                        {swapTokens_eth_balance_div}
-                        {swapTokens_tokenA_balance_div}
-                        {swapTokens_tokenB_balance_div}
-                        <span>+++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
+            <div className="row" >
+                <div className="col-md-4">
+                    <div className="row " style={{display:'block'}} id="window">
+                        <div id="title">Connected Account Details:</div>
                         {eth_balance_div}
                         {tokenA_balance_div}
                         {tokenB_balance_div}
-                        <span>+++++++++++++++++++++++++++++++++++++++++++++++++++++++</span>
-                        <div className="flex-container token_box">
-                                <input  type="text" value={this.state.token_amount} onChange={this.handleChange1} className="form-control  flex-child token_amount" placeholder="Token Amount"/> 
-                                <select className="form-control  flex-child select_token"  value={this.state.selected_token} onChange={this.handleSelect} >
-                                    <option value="A">Token A</option>
-                                    <option value="B">Token B</option>
-                                </select>
-                        </div>
-                        <div  className="flex-container eth_box">
-                            <input  type="text" value={this.state.eth_amount} onChange={this.handleChange2}  className="form-control flex-child eth_balance" placeholder="ETH Amount"/> 
-                            <div className="flex-child">ETH</div>
-                        </div>
-                        <div  className="flex-container usd_box">
-                            <input  type="text" value={this.state.usd_amount} onChange={this.handleChange3} className="form-control flex-child eth_balance" placeholder="USD Amount"/> 
-                            <div className="flex-child">USD</div>
-                        </div>
 
+                    </div>
+                    <div className="row "  style={{display:'block'}} id="window">
+                        <div  id="title">SwapTokens Contract Details:</div>
+                        {swapTokens_eth_balance_div}
+                        {swapTokens_tokenA_balance_div}
+                        {swapTokens_tokenB_balance_div}
+
+                    </div>
+                </div>
+
+                <div className="col-md-2" ></div>
+
+                <div className="col-md-5" >
+                        <div className="row " id="window">
+                            <form onSubmit={this.handleSubmit}>   
+                                
+                                <div className="flex-container token_box">
+                                        <input  type="text" value={this.state.token_amount} onChange={this.handleChange1} className="form-control  flex-child token_amount" placeholder="Token Amount"/> 
+                                        <select className="form-control  flex-child select_token"  value={this.state.selected_token} onChange={this.handleSelect} >
+                                            <option value="A">Token A</option>
+                                            <option value="B">Token B</option>
+                                        </select>
+                                </div>
+                                <div  className="flex-container eth_box">
+                                    <input  type="text" value={this.state.eth_amount} onChange={this.handleChange2}  className="form-control flex-child eth_balance" placeholder="ETH Amount"/> 
+                                    <div className="flex-child">ETH</div>
+                                </div>
+                                <div  className="flex-container usd_box">
+                                    <input  type="text" value={this.state.usd_amount} onChange={this.handleChange3} className="form-control flex-child eth_balance" placeholder="USD Amount"/> 
+                                    <div className="flex-child">USD</div>
+                                </div>
+
+                                
+                                    <div className="flex-container">
+                                        <input type="submit" name="action1" value="buy" disabled={this.state.eth_amount === "0" || !this.state.eth_amount} className="btn btn-sm  flex-child" id="buy_button"
+                                            onClick={(e)=>this.setState({clicked_button:"buy"})} />
+                                        
+                                        <input type="submit" name="action2" value="sell" disabled={this.state.eth_amount === "0" || !this.state.eth_amount}  className="btn btn-sm flex-child" id="sell_button"
+                                            onClick={(e)=>this.setState({clicked_button:"sell"})}  />
+                                        
+                                    </div>
+                            
+                            
+                            </form>
+
+                        </div>
                         
-                            <div className="flex-container">
-                                <input type="submit" name="action1" value="buy" disabled={this.state.eth_amount === "0" || !this.state.eth_amount} className="btn btn-sm  flex-child" id="buy_button"
-                                    onClick={(e)=>this.setState({clicked_button:"buy"})} />
-                                
-                                <input type="submit" name="action2" value="sell" disabled={this.state.eth_amount === "0" || !this.state.eth_amount}  className="btn btn-sm flex-child" id="sell_button"
-                                    onClick={(e)=>this.setState({clicked_button:"sell"})}  />
-                                
-                            </div>
-                     
-                      
-                    </form>
-              </div>
-          </div>
-      </div>
-  
+                       
+                </div>
+                <div className="col-md-1"></div>
+           
+            </div>
+    </div>
   );
 
   }
