@@ -97,11 +97,12 @@ class App extends Component {
  
 
   render() {
+    
     if (!this.state.web3) {
       return <div>Loading Web3, accounts, and contracts...</div>;
     }
     if((this.state.web3 )&& (!this.state.oncorrectNetwork)){
-      return <div>Please connect To Ganache Network... </div>;
+      return <div>Please connect To Rinkeby Network... </div>;
     }
     return (
       <div className="App">

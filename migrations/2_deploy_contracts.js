@@ -4,9 +4,6 @@ const TokenB = artifacts.require("TokenB");
 const SwapTokens = artifacts.require("SwapTokens");
 
 module.exports = async function(deployer, network, accounts) {
-  console.log("acc0 = ", accounts[0]);
-  // Deploy Token
-  // const deploying_account = "0x4bb52fF3e053d127265A8A8dDf9Dc291fcF04aF0";
   await deployer.deploy(TokenA, 1000000);
   await deployer.deploy(TokenB, 1000000);
 
@@ -22,9 +19,17 @@ module.exports = async function(deployer, network, accounts) {
 
   await token1.approve(swaptokens.address, web3.utils.toWei("1000000"));
   await token2.approve(swaptokens.address, web3.utils.toWei("1000000"));
-  console.log("+++++");
-  console.log("token1.allowance(acc0, swaptokens.address) = ",BigInt(await token1.allowance(accounts[0], swaptokens.address)));
-  console.log("token2.allowance(acc0, swaptokens.address) = ",BigInt(await token2.allowance(accounts[0], swaptokens.address)));
+  // console.log("++++++++++++++++++++++++++++++++++++++++");
+  // console.log("token1.address=", token1.address);
+  // console.log("token2.address=", token2.address);
+  // console.log("swapTokens.address=", swaptokens.address);
+  
+  // console.log("token1.allowance(acc0, swaptokens.address) = ",BigInt(await token1.allowance(accounts[0], swaptokens.address)));
+  // console.log("token2.allowance(acc0, swaptokens.address) = ",BigInt(await token2.allowance(accounts[0], swaptokens.address)));
+  // console.log("swapTokens.owner=", await swaptokens.owner());
+  // console.log("+++++++++++++++++++++++++++++++++++++++++");
+
+
 
 };
 
