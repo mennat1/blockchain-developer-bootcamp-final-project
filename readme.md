@@ -1,4 +1,4 @@
-# A simple instant exchange that lets users buy and sell ERC20 tokens
+# A simple instant exchange that lets users buy and sell ERC20 tokens:
 - This Dapp lets you buy/sell two ERC20 Tokens (TKNA/TKNB) by specifying the (token amount/ETH amount/USD amount).
 - Once the Txn is confirmed you can see the update in your account details and in the SwapTokens Contract details.
    <br> (i.e. the change in TKNA balance/TKNB balance/ETH balance)
@@ -7,13 +7,13 @@
 - The USD price is determined using chainlink's Ethereum Data Feeds on Rinkeby Testnet.
 - There are 3 Contracts:
    <br>TokenA, TokenB Contracts: are ERC20 Tokens of initial supply = 1M tokens.
-   <br>SwapTokens Contract: has allowance of all tokens and is responsible for letting users buy/sell tokens.
+   <br>SwapTokens Contract: has allowance of all tokens and is responsible for letting users buy/sell tokens. (Tokens Pool)
 
 
 ## Deployed Dapp url:
+https://mennat1.github.io/ConsensysBootcampDeployedProject/
 
-
-## Directory structure
+## Directory structure:
 - client: Project's React frontend.
 - contracts: Smart contracts that are deployed in Rinkeby testnet.
 - migrations: Migration files for deploying contracts in contracts directory.
@@ -25,7 +25,7 @@
 - Truffle and Ganache
 - Npm
 
-### Contracts
+### Contracts:
 - Run (sudo) npm install in project root to install Truffle build and smart contracts dependencies.
 - Run local testnet in port 7545 with an Ethereum client, e.g. Ganache
 - truffle migrate --network development
@@ -33,7 +33,7 @@
 - Run tests in Truffle console: test
 - Run test from cli using: truffle test
 
-### Frontend
+### Frontend:
 - cd client
 - (sudo) npm install
 - npm start
@@ -42,9 +42,9 @@
 
 
 
-### Screencast link
-
-### Public Ethereum wallet for certification:
+## Screencast link:
+https://www.youtube.com/watch?v=CtCQNsCar6U&ab_channel=MennaAbuelnaga
+## Public Ethereum wallet for certification:
 0xD8FC00c7fe6e9a12d701192595abF425A6546E9A
 
 
