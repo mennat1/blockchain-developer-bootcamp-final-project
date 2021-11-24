@@ -19,7 +19,7 @@ class Navbar extends Component {
               />
               : <span>CAN NOT FIND ACCOUNT</span>
             }
-            <small className="connectedAccount text-primary ">
+            <small className="connectedAccount ">
               <small id="connectedAccount">Connected Account Address:  {this.props.connectedAccount}</small>
             </small>
 
