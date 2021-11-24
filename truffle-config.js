@@ -22,7 +22,8 @@ module.exports = {
         return new HDWalletProvider(MNEMONIC, API_URL)
       },
       network_id: 4,
-      gas: 4000000 //4M is the max
+      gas: 4000000, //4M is the max
+      
     }
   
   },

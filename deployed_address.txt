@@ -1,7 +1,7 @@
 Testnet: Rinkeby
-SwapTokens Contract Address: 0xF2e6d2CdF5749e20aE15F48E4070bc584C8D7F69
-TokenA Contract Address: 0x8FBdB5Da8a38D5c799Ad353c53F5C0744c5F6E0B
-TokenB Contract Address: 0xD6697E4fF3c5c1aeb6f30DB712c8981ACbCDCbBe
-Migrations Contract Address: 0x24F6b3921B4Ae67f6266f886E5B0c4bdAA0fF3AD
+SwapTokens Contract Address: 0x2522B1aAeA8a12cFe82E65CF7B07cc61eFD893DC
+TokenA Contract Address: 0xb6409B711d511A7db64cCBDa2Eca452AAad58ee2
+TokenB Contract Address: 0x817E0B7b325Dd3b4EC40bF5895d4f51b01800Da1
+Migrations Contract Address: 0x233937ADdE8e3B644fc41AEFEd9ccc1609f9E7A3
 Deployer Public Address: 0x4bb52fF3e053d127265A8A8dDf9Dc291fcF04aF0
-Final cost: 0.009676172557372237 ETH
+Final cost: 0.00967614254761444 ETH
