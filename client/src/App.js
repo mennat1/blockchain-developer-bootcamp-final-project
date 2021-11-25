@@ -56,7 +56,6 @@ class App extends Component {
         await this.connectWallet();
       }else{
         this.setState({oncorrectNetwork:false})
-        // alert("Please switch to Rinkeby Testnet +");     
      }
 
 
@@ -66,7 +65,6 @@ class App extends Component {
       );
       console.error(err);
     }
-    // await this.connectWallet();
 
   };
 
