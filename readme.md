@@ -1,6 +1,5 @@
-    Connect Metamask       |         Buy/Sell
-:-------------------------:|:-------------------------:|
-![](./imgs/p1.png)         |   ![](./imgs/p2.png)      | 
+![](./imgs/p1.png)         
+![](./imgs/p2.png)  
 
 
 # A simple instant exchange that lets users buy and sell ERC20 tokens:
