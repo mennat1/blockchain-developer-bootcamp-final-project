@@ -1,4 +1,10 @@
+    Connect Metamask       |         Buy/Sell
+:-------------------------:|:-------------------------:|
+![](./imgs/p1.png)         |   ![](./imgs/p2.png)      | 
+
+
 # A simple instant exchange that lets users buy and sell ERC20 tokens:
+
 - This Dapp lets you buy/sell two ERC20 Tokens (TKNA/TKNB) by specifying the (token amount/ETH amount/USD amount).
 - Once the Txn is confirmed you can see the update in your account details and in the SwapTokens Contract details.
    <br> (i.e. the change in TKNA balance/TKNB balance/ETH balance)
@@ -22,16 +28,16 @@ https://mennat1.github.io/ConsensysBootcampDeployedProject/
 ## How to run this project locally:
 ### Prerequisites:
 - Node.js >= v14
-- Truffle and Ganache
+- Truffle, Ganache and Metamask
 - Npm
 
 ### Contracts:
 - Run (sudo) npm install in project root to install Truffle build and smart contracts dependencies.
-- Run local testnet in port 7545 with an Ethereum client, e.g. Ganache
-- truffle migrate --network development
+- Make sure Ganache is running.(port 7575)
 - truffle console --network development
-- Run tests in Truffle console: test
-- Run test from cli using: truffle test
+- Run tests in Truffle console: > test
+- Run test from cli using: $truffle test
+
 
 ### Frontend:
 - cd client
@@ -39,11 +45,14 @@ https://mennat1.github.io/ConsensysBootcampDeployedProject/
 - npm start
 - Open http://localhost:3000
 
-
-
+### Workflow:
+- Select TokenA/TokenB.
+- Specify (token amount/ETH amount/USD amount).
+- Buy -> Confirm Txn / Sell -> Approve Txn -> Confirm Tx.
 
 ## Screencast link:
-https://www.youtube.com/watch?v=CtCQNsCar6U&ab_channel=MennaAbuelnaga
+https://www.youtube.com/watch?v=B-2oNYXci3U&ab_channel=MennaAbuelnaga
+
 ## Public Ethereum wallet for certification:
 0xD8FC00c7fe6e9a12d701192595abF425A6546E9A
 

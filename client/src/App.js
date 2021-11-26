@@ -38,6 +38,7 @@ class App extends Component {
       console.log("TLoading web3 and connected accounts");
       // Get network provider and web3 instance.
       const web3 = await getWeb3();
+      console.log("web3 = ", web3);
       this.setState({web3});
 
       // Use web3 to get the user's accounts.
@@ -53,7 +54,7 @@ class App extends Component {
       if(networkId === 4){
         console.log("CORRECT NETWORK");
         this.setState({oncorrectNetwork:true});
-        await this.connectWallet();
+        // await this.connectWallet();
       }else{
         this.setState({oncorrectNetwork:false})
      }
@@ -139,25 +140,23 @@ class App extends Component {
   render() {
     let content;
     if (!this.state.web3) {
-      return <div>Loading Web3, accounts, and contracts...</div>;
-    }
-
-    if((this.state.oncorrectNetwork === false) && (this.state.web3)){
-      return (
+      content =  (<div>Loading Web3, accounts, and contracts...</div>);
+    }else if (this.state.web3 && (!this.state.tokenA_contract)){
+      content =  (
               
-                <div className="App">
-                  <p >Hi There! </p>
-                  <p>Please Connect To Rinkeby Testnet Then Connect Your Wallet To Start Buying/Selling Tokens</p>
-                  <button   type="button" class="btn btn-outline-primary btn-lg" 
-                            onClick={async() => {await this.connectWallet();}}>
-                    Connect Your Wallet</button>
-              
-                </div>
+                  <div className="App">
+                    <p >Hi There! </p>
+                    <p>Please Connect To Rinkeby Testnet Then Connect Your Wallet To Start Buying/Selling Tokens</p>
+                    <button   type="button" className="btn btn-outline-primary btn-lg" 
+                              onClick={async() => {await this.connectWallet();}}>
+                      Connect Your Wallet</button>
+                
+                  </div>
              
               
-             );
-    }else{
-         content = (<div>
+                );
+      }else{
+          content =  (<div>
                       <Navbar connectedAccount={this.state.connectedAccount}/>
                       <Form
                         web3={this.state.web3}
@@ -170,6 +169,7 @@ class App extends Component {
 
                     </div>
                     );
+
 
     }
    

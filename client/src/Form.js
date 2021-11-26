@@ -72,46 +72,71 @@ class Form extends Component {
 
   async handleSubmit(event) {
     event.preventDefault();
-    // alert("Hi!");
-    // alert(event.target.value);
-    // alert(event.submit.name);
-    // alert(this.state.clicked_button);
+  
     if(this.state.clicked_button === "buy"){
-        let call_value = this.props.web3.utils.toWei((this.state.eth_amount).toString());
+        let call_value = await (this.props.web3.utils.toWei((this.state.eth_amount).toString()));
+        console.log("this.state.eth_amount = ", this.state.eth_amount);
+        console.log("this.state.eth_balance = ", this.state.eth_balance);
         console.log("call_value = ", call_value);
-        if(this.state.selected_token === "A"){
-            // console.log("eth_amount = ", eth_amount);
-            
-            await this.props.swapTokens_contract.methods.buyTokensA().send({value:call_value, from:this.props.connectedAccount});
-
-            let tokenA_balance = await this.props.tokenA_contract.methods.balanceOf(this.props.connectedAccount).call();
-            console.log("Token A Balance after buying tokens= ", this.props.web3.utils.fromWei(tokenA_balance));
-            this.setState({tokenA_balance});
-
-        }else if(this.state.selected_token === "B"){
-            await this.props.swapTokens_contract.methods.buyTokensB().send({value:call_value, from:this.props.connectedAccount});
-            let tokenB_balance = await this.props.tokenB_contract.methods.balanceOf(this.props.connectedAccount).call();
-            console.log("Token B Balance after buying tokens= ", this.props.web3.utils.fromWei(tokenB_balance));
-            this.setState({tokenB_balance});
-
+        
+        if((this.state.eth_balance < call_value)){
+            alert("You don't have enough ETH to buy Tokens.");
         }else{
-            alert("ERROR in selected_token");
+            if(this.state.selected_token === "A"){
+                await this.props.swapTokens_contract.methods.buyTokensA().send({value:call_value, from:this.props.connectedAccount});
+    
+                let tokenA_balance = await this.props.tokenA_contract.methods.balanceOf(this.props.connectedAccount).call();
+                console.log("Token A Balance after buying tokens= ", this.props.web3.utils.fromWei(tokenA_balance));
+                this.setState({tokenA_balance});
+    
+            }else if(this.state.selected_token === "B"){
+               
+                
+                await this.props.swapTokens_contract.methods.buyTokensB().send({value:call_value, from:this.props.connectedAccount});
+                let tokenB_balance = await this.props.tokenB_contract.methods.balanceOf(this.props.connectedAccount).call();
+                console.log("Token B Balance after buying tokens= ", this.props.web3.utils.fromWei(tokenB_balance));
+                this.setState({tokenB_balance});
+    
+            }else{
+                alert("ERROR in selected_token");
+            }
+            
+
         }
         
         
     }else if(this.state.clicked_button === "sell"){
         let call_amount = this.props.web3.utils.toWei((this.state.token_amount).toString());
-        if(this.state.selected_token === "A"){
-            await this.props.swapTokens_contract.methods.sellTokensA(call_amount).send({from:this.props.connectedAccount});
-            let tokenA_balance = await this.props.tokenA_contract.methods.balanceOf(this.props.connectedAccount).call();
-            console.log("Token A Balance after selling tokens= ", this.props.web3.utils.fromWei(tokenA_balance));
-            this.setState({tokenA_balance});
+        console.log("call amount = ", call_amount);
+        console.log("this.state.token_amount = ", this.state.token_amount);
+        console.log("this.state.tokenA_balance = ", this.state.tokenA_balance);
+        console.log("this.state.tokenB_balance = ", this.state.tokenB_balance);
 
+        if(this.state.selected_token === "A"){
+            if(call_amount > this.state.tokenA_balance){
+                alert("You don't have enough Tokens to be sold.")
+            }else{
+                await this.props.tokenA_contract.methods.approve(this.props.swapContract_address, call_amount).send({from:this.props.connectedAccount});
+                await this.props.swapTokens_contract.methods.sellTokensA(call_amount).send({from:this.props.connectedAccount});
+                let tokenA_balance = await this.props.tokenA_contract.methods.balanceOf(this.props.connectedAccount).call();
+                console.log("Token A Balance after selling tokens= ", this.props.web3.utils.fromWei(tokenA_balance));
+                this.setState({tokenA_balance});
+    
+
+            }
+          
         }else if(this.state.selected_token === "B"){
-            await this.props.swapTokens_contract.methods.sellTokensB(call_amount).send({from:this.props.connectedAccount});
-            let tokenB_balance = await this.props.tokenA_contract.methods.balanceOf(this.props.connectedAccount).call();
-            console.log("Token A Balance after selling tokens= ", this.props.web3.utils.fromWei(tokenB_balance));
-            this.setState({tokenB_balance});
+            if(call_amount > this.state.tokenB_balance){
+                alert("You don't have enough Tokens to be sold.")
+            }else{
+                await this.props.tokenB_contract.methods.approve(this.props.swapContract_address, call_amount).send({from:this.props.connectedAccount});
+                await this.props.swapTokens_contract.methods.sellTokensB(call_amount).send({from:this.props.connectedAccount});
+                let tokenB_balance = await this.props.tokenB_contract.methods.balanceOf(this.props.connectedAccount).call();
+                console.log("Token A Balance after selling tokens= ", this.props.web3.utils.fromWei(tokenB_balance));
+                this.setState({tokenB_balance});
+
+                }
+                
         
         }else{
             alert("ERROR in selected_token");
@@ -173,7 +198,7 @@ class Form extends Component {
       
     const eth_usd_rinkeby_proxy_address = "0x8A753747A1Fa494EC906cE90E9f37563A8AF630e";
     const priceFeed = new this.props.web3.eth.Contract(aggregatorV3InterfaceABI, eth_usd_rinkeby_proxy_address);
-    console.log(priceFeed);
+    console.log("price feed = ",priceFeed);
 
     let decimals = 0;
     decimals = await priceFeed.methods.decimals().call();

@@ -15,6 +15,7 @@ module.exports = {
      host: "127.0.0.1",     // Localhost (default: none)
      port: 7545,            // Standard Ethereum port (default: none)
      network_id: "*",       // Any network (default: none)
+     networkCheckTimeout: 999999
     },
   
     rinkeby: {
@@ -23,6 +24,7 @@ module.exports = {
       },
       network_id: 4,
       gas: 4000000, //4M is the max
+      networkCheckTimeout: 999999
       
     }
   

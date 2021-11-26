@@ -105,12 +105,7 @@ contract("SwapTokens", (accounts) =>{
         
     });
 
-    it("Has allowance for TKNA and TKNB", async () => {
-        assert.equal(web3.utils.toWei("1000000") ,BigInt(await tokenA.allowance(accounts[0], swapTokens.address)));
-        assert.equal(web3.utils.toWei("1000000") ,BigInt(await tokenB.allowance(accounts[0], swapTokens.address)));
-  
-
-    });
+    
 
     it('lets user buy 1 TKNA for 0.01 ETH if he has enough ETH balance', async () => {
        
@@ -144,7 +139,7 @@ contract("SwapTokens", (accounts) =>{
     
 
     it('lets user sell 1 TKNA for 0.01 ETH if he has enough token balance', async () => {
-       
+        await tokenA.approve(swapTokens.address, web3.utils.toWei("1"));
         await swapTokens.sellTokensA(web3.utils.toWei("1")); // SELL 1 TKNA
 
         bA_0_after = await tokenA.balanceOf(accounts[0]);
@@ -234,6 +229,7 @@ contract("SwapTokens", (accounts) =>{
 
     it('lets user sell 1 TKNB for 0.005 ETH if he has enough token balanace', async () => {
       
+        await tokenB.approve(swapTokens.address, web3.utils.toWei("1"));
 
         await swapTokens.sellTokensB(web3.utils.toWei("1")); // Buy 1 TKNB
 

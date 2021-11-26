@@ -12,8 +12,8 @@ import "./TokenB.sol";
 contract SwapTokens{
 
   string public name = "SwapTokens Instant Exchange";
-  TokenA public token1;
-  TokenB public token2;
+  TokenA token1;
+  TokenB token2;
   uint public rate1 = 100; // 1 TKNA = 0.01 ETH
   uint public rate2 = 200; // 1 TKNB = 0.005 ETH
   address public owner;
@@ -56,9 +56,9 @@ contract SwapTokens{
   event Log(uint gas);
 
 
-  constructor(TokenA _token1, TokenB _token2) {
-    token1 = _token1;
-    token2 = _token2;
+  constructor(address _token1_address, address _token2_address) {
+    token1 = TokenA(_token1_address);
+    token2 = TokenB(_token2_address);
     owner = msg.sender; // owner is the deployer
 
   } 
@@ -88,7 +88,8 @@ contract SwapTokens{
     require(token1.balanceOf(address(this)) >= tokenAmount);
 
     // Transfer tokens to the user
-    token1.transfer(msg.sender, tokenAmount);
+    token1.transfer(msg.sender, tokenAmount); // swapTokens transfers tokenA to the msg.sender, becaue it has the allowance to do so.
+    
 
     // Emit an event
     emit TokensPurchased(msg.sender, address(token1), tokenAmount, rate1);
@@ -130,8 +131,10 @@ contract SwapTokens{
 
     // Require that SwapTokens has enough Eth
     require(address(this).balance >= etherAmount);
+    require(token1.allowance(msg.sender, address(this)) >= _amount);
 
     // Sell tokens
+
     token1.transferFrom(msg.sender, address(this), _amount);
     payable(msg.sender).transfer(etherAmount);
 
@@ -154,7 +157,7 @@ contract SwapTokens{
 
     // Require that SwapTokens has enough Ether
     require(address(this).balance >= etherAmount);
-
+    require(token2.allowance(msg.sender, address(this)) >= _amount);
     // Perform sale
     token2.transferFrom(msg.sender, address(this), _amount);
     payable(msg.sender).transfer(etherAmount);
